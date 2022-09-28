@@ -1,15 +1,15 @@
-const {RequestError} = require("../helpers");
+const { RequestError } = require("../helpers");
 
 const validateBody = schema => {
-    const func = (req, _, next) => {
-        const {error} = schema.validate(req.body);
-        if(error) {
-            next(RequestError(400, error.message))
-        }
-        next();
+  const func = (req, _, next) => {
+    const { error } = schema.validate(req.body);
+    if (error) {
+      next(RequestError(400, "missing field favorite"));
     }
+    next();
+  };
 
-    return func;
+  return func;
 };
 
 module.exports = validateBody;
